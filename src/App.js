@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {Auth} from "./components/auth";
 function App() {
   return (
     <div className="App">
-    Music Mob
+     <Auth />
     </div>
+   
   );
 }
 
