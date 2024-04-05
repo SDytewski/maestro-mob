@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import { Auth } from "./components/auth";
 import { db } from "./config/firebase";
-import { getDocs, collection } from 'firebase/firestore'
+import { getDocs, collection, addDoc } from 'firebase/firestore'
 
 function App() {
   const [movieList, setMovieList] = useState([]);
@@ -33,6 +33,10 @@ function App() {
     getMovieList();
   }, []);
 
+  // const onSubmitMovie = async ()=> {
+  //   awaut addDoc(moviesCollectionRef,{title: newMovieTitle, rel} )
+  // }
+
   return (
     <div className="App">
       <Auth />
@@ -41,6 +45,10 @@ function App() {
           <h1>
             {movie.name}
           </h1>
+          <p>Level: {movie.level}</p>
+          <p>Instrument: {movie.instrument}</p>
+          <p>Location: {movie.location}</p>
+          
         </div>
       )
       )}
