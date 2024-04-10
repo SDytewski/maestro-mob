@@ -5,7 +5,16 @@ import { db } from "./config/firebase";
 import { getDocs, collection, addDoc } from 'firebase/firestore'
 
 function App() {
-  const [movieList, setMovieList] = useState([]);
+  const [movieList, setMovieList] = useState("");
+
+
+  // New Musician State
+  // const [newName, setNewName] = useState("");
+  // const [newLocation, setNewLocation] = useState("");
+  // const [newLevel, setNewLevel] = useState("");
+  // const [newInstrument, setNewInstrument] = useState("");
+
+
 
   const moviesCollectionRef = collection(db, "musicians")
 
@@ -33,25 +42,48 @@ function App() {
     getMovieList();
   }, []);
 
-  // const onSubmitMovie = async ()=> {
-  //   awaut addDoc(moviesCollectionRef,{title: newMovieTitle, rel} )
-  // }
+  // const onSubmitMovie = async () => {
+  //   try {
+  //     await addDoc(moviesCollectionRef, {
+  //       name: newName,
+  //       location: newLocation,
+  //       level: newLevel,
+  //       instrument: newInstrument,
 
+  //     });
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+
+  // }
   return (
     <div className="App">
       <Auth />
-      {movieList.map((movie) => (
-        <div>
-          <h1>
-            {movie.name}
-          </h1>
-          <p>Level: {movie.level}</p>
-          <p>Instrument: {movie.instrument}</p>
-          <p>Location: {movie.location}</p>
-          
-        </div>
-      )
-      )}
+      <div>
+        {/* <input placeholder="name" onChange={(e) => setNewName(e.target.value)} />
+        <input placeholder="location" onChange={(e) => setNewLocation(e.target.value)} />
+        <input placeholder="level" onChange={(e) => setNewLevel(e.target.value)} />
+        <input placeholder="instrument" onChange={(e) => setNewInstrument(e.target.value)} />
+ */}
+
+
+      </div>
+      <div>
+        {movieList.map((movie) => (
+          <div>
+            <h1>
+              {movie.name}
+            </h1>
+            <p>Location: {movie.location}</p>
+            <p>Level: {movie.level}</p>
+            <p>Instrument: {movie.instrument}</p>
+
+
+          </div>
+
+        )
+        )}
+      </div>
     </div>
   );
 }
