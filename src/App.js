@@ -9,10 +9,10 @@ function App() {
 
 
   // New Musician State
-  // const [newName, setNewName] = useState("");
-  // const [newLocation, setNewLocation] = useState("");
-  // const [newLevel, setNewLevel] = useState("");
-  // const [newInstrument, setNewInstrument] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newLocation, setNewLocation] = useState("");
+  const [newLevel, setNewLevel] = useState("");
+  const [newInstrument, setNewInstrument] = useState("");
 
 
 
@@ -30,7 +30,7 @@ function App() {
           ...doc.data(),
           id: doc.id
 
-        }))
+        }));
         console.log(filteredData);
         setMovieList(filteredData);
 
@@ -42,20 +42,20 @@ function App() {
     getMovieList();
   }, []);
 
-  // const onSubmitMovie = async () => {
-  //   try {
-  //     await addDoc(moviesCollectionRef, {
-  //       name: newName,
-  //       location: newLocation,
-  //       level: newLevel,
-  //       instrument: newInstrument,
+  const onSubmitMovie = async () => {
+    try {
+      await addDoc(moviesCollectionRef, {
+        name: newName,
+        location: newLocation,
+        level: newLevel,
+        instrument: newInstrument,
 
-  //     });
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
+      });
+    } catch (err) {
+      console.error(err)
+    }
 
-  // }
+  }
   return (
     <div className="App">
       <Auth />
@@ -74,9 +74,9 @@ function App() {
             <h1>
               {movie.name}
             </h1>
-            <p>Location: {movie.location}</p>
+            {/* <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
-            <p>Instrument: {movie.instrument}</p>
+            <p>Instrument: {movie.instrument}</p> */}
 
 
           </div>
