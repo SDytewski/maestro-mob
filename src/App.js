@@ -5,7 +5,7 @@ import { db } from "./config/firebase";
 import { getDocs, collection, addDoc } from 'firebase/firestore'
 
 function App() {
-  const [movieList, setMovieList] = useState("");
+  const [movieList, setMovieList] = useState([]);
 
 
   // New Musician State
@@ -18,26 +18,30 @@ function App() {
 
   const moviesCollectionRef = collection(db, "musicians")
 
+  const getMovieList = async () => {
+    try {
+
+      // Read the dAta
+      // Set the movie list
+      const data = await getDocs(moviesCollectionRef);
+      const filteredData = data.docs.map((doc) =>
+      ({
+        ...doc.data(),
+        id: doc.id
+
+      }));
+      console.log(filteredData);
+      setMovieList(filteredData);
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
   useEffect(() => {
-    const getMovieList = async () => {
-      try {
-
-        // Read the dAta
-        // Set the movie list
-        const data = await getDocs(moviesCollectionRef);
-        const filteredData = data.docs.map((doc) =>
-        ({
-          ...doc.data(),
-          id: doc.id
-
-        }));
-        console.log(filteredData);
-        setMovieList(filteredData);
-
-      } catch (err) {
-        console.error(err);
-      }
-    };
+   
 
     getMovieList();
   }, []);
@@ -51,6 +55,11 @@ function App() {
         instrument: newInstrument,
 
       });
+
+      getMovieList();
+      setNewName("");
+      
+
     } catch (err) {
       console.error(err)
     }
@@ -60,13 +69,13 @@ function App() {
     <div className="App">
       <Auth />
       <div>
-        {/* <input placeholder="name" onChange={(e) => setNewName(e.target.value)} />
+         <input placeholder="name" onChange={(e) => setNewName(e.target.value)} /> 
         <input placeholder="location" onChange={(e) => setNewLocation(e.target.value)} />
         <input placeholder="level" onChange={(e) => setNewLevel(e.target.value)} />
         <input placeholder="instrument" onChange={(e) => setNewInstrument(e.target.value)} />
- */}
+ 
 
-
+        <button onClick={onSubmitMovie}> Submit Musician</button>
       </div>
       <div>
         {movieList.map((movie) => (
@@ -74,9 +83,9 @@ function App() {
             <h1>
               {movie.name}
             </h1>
-            {/* <p>Location: {movie.location}</p>
+            <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
-            <p>Instrument: {movie.instrument}</p> */}
+            <p>Instrument: {movie.instrument}</p>
 
 
           </div>
