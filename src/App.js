@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import { Auth } from "./components/auth";
 import { db } from "./config/firebase";
-import { getDocs, collection, addDoc } from 'firebase/firestore'
+import { getDocs, collection, addDoc, deleteDoc, doc } from 'firebase/firestore'
 
 function App() {
   const [movieList, setMovieList] = useState([]);
@@ -38,14 +38,17 @@ function App() {
     }
   };
 
+  
+  const deleteMovie = async (id) => {
+    const movieDoc = doc(db, "musicians",id)
+    await deleteDoc(movieDoc);
+  }  
 
 
   useEffect(() => {
    
-
-    getMovieList();
+  getMovieList();
   }, []);
-
   const onSubmitMovie = async () => {
     try {
       await addDoc(moviesCollectionRef, {
@@ -57,12 +60,13 @@ function App() {
       });
 
       getMovieList();
-      setNewName("");
+      
       
 
     } catch (err) {
       console.error(err)
     }
+
 
   }
   return (
@@ -86,6 +90,7 @@ function App() {
             <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
+            <button onClick={()=> deleteMovie(movie.id)}>Delete Musician</button>
 
 
           </div>
