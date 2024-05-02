@@ -16,9 +16,7 @@ function App() {
 
 
 
-  const musiciansCollectionRef = collection(db, "musicians")
-
-
+  const musiciansCollectionRef = collection(db, "musicians");
 
 
 
@@ -56,6 +54,7 @@ function App() {
     const deleteMovie = async (id) => {
       const movieDoc = doc(db, "musicians", id)
       await deleteDoc(movieDoc);
+      getMovieList(); 
     }  
 
 
@@ -74,9 +73,9 @@ function App() {
         <button onClick={onSubmitMovie}> Submit Musician</button>
       </div>
       <div>
-        {movieList.map((movie) => (
-          <div>
-            <h1>
+        {movieList.map((movie, i) => (
+          <div key={i}>
+            <h1 >
               {movie.name}
             </h1>
             <p>Location: {movie.location}</p>
