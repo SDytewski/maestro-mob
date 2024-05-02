@@ -16,59 +16,51 @@ function App() {
 
 
 
-  const moviesCollectionRef = collection(db, "musicians")
+  const musiciansCollectionRef = collection(db, "musicians")
+
+
+
+
 
   const getMovieList = async () => {
     try {
-
-      // Read the dAta
-      // Set the movie list
-      const data = await getDocs(moviesCollectionRef);
-      const filteredData = data.docs.map((doc) =>
-      ({
+      const data = await getDocs(musiciansCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id
-
-      }));
-      console.log(filteredData);
+      })); console.log(filteredData);
       setMovieList(filteredData);
-
     } catch (err) {
       console.error(err);
     }
   };
 
-  
-  const deleteMovie = async (id) => {
-    const movieDoc = doc(db, "musicians",id)
-    await deleteDoc(movieDoc);
-  }  
-
-
   useEffect(() => {
-   
-  getMovieList();
-  }, []);
+    getMovieList();
+    }, []);
+
   const onSubmitMovie = async () => {
     try {
-      await addDoc(moviesCollectionRef, {
+      await addDoc(musiciansCollectionRef, {
         name: newName,
         location: newLocation,
         level: newLevel,
         instrument: newInstrument,
-
-      });
-
-      getMovieList();
-      
-      
-
+      });   
+      getMovieList();      
     } catch (err) {
       console.error(err)
     }
+  };
+
+    const deleteMovie = async (id) => {
+      const movieDoc = doc(db, "musicians", id)
+      await deleteDoc(movieDoc);
+    }  
 
 
-  }
+
+
   return (
     <div className="App">
       <Auth />
