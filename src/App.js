@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import { Auth } from "./components/auth";
 import { db } from "./config/firebase";
-import { getDocs, collection, addDoc, deleteDoc, doc } from 'firebase/firestore'
+import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 
 function App() {
   const [movieList, setMovieList] = useState([]);
@@ -14,6 +14,7 @@ function App() {
   const [newLevel, setNewLevel] = useState("");
   const [newInstrument, setNewInstrument] = useState("");
 
+  const [updatedTitle, setUpdatedTitle] = useState("")
 
 
   const musiciansCollectionRef = collection(db, "musicians");
@@ -57,6 +58,12 @@ function App() {
       getMovieList(); 
     }  
 
+    const updateMovieTitle = async (id) => {
+      const movieDoc = doc(db, "musicians", id)
+      await updateDoc(movieDoc, {name: updatedTitle});
+      getMovieList(); 
+    }  
+
 
 
 
@@ -83,7 +90,10 @@ function App() {
             <p>Instrument: {movie.instrument}</p>
             <button onClick={()=> deleteMovie(movie.id)}>Delete Musician</button>
 
-
+            <input placeholder="new title..." 
+            onChange={(e) => setUpdatedTitle(e.target.value)} 
+            />
+            < button onClick={() => updateMovieTitle(movie.id)}>Update Musician</button>
           </div>
 
         )
