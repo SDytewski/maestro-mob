@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { Auth } from "./components/auth";
-import { db } from "./config/firebase";
+import { db, auth } from "./config/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
         location: newLocation,
         level: newLevel,
         instrument: newInstrument,
+        userId: auth?.currentUser?.uid
       });   
       getMovieList();      
     } catch (err) {
