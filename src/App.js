@@ -7,7 +7,6 @@ import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase
 function App() {
   const [movieList, setMovieList] = useState([]);
 
-
   // New Musician State
   const [newName, setNewName] = useState("");
   const [newLocation, setNewLocation] = useState("");
@@ -18,7 +17,6 @@ function App() {
 
 
   const musiciansCollectionRef = collection(db, "musicians");
-
 
 
   const getMovieList = async () => {
