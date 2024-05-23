@@ -18,7 +18,6 @@ function App() {
 
   const musiciansCollectionRef = collection(db, "musicians");
 
-
   const getMovieList = async () => {
     try {
       const data = await getDocs(musiciansCollectionRef);
@@ -51,9 +50,10 @@ function App() {
     }
   };
 
+  //Delete is not working when user wants to authenticate by id and delete only their musician
     const deleteMovie = async (id) => {
       const movieDoc = doc(db, "musicians", id)
-      await deleteDoc(movieDoc);
+      await deleteDoc(movieDoc, );
       getMovieList(); 
     }  
 
