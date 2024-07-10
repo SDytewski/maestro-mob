@@ -62,29 +62,44 @@ export const Auth = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <h1>Music Mob</h1>
+             </Grid>   
                 <Grid item xs={3}>
-                    <input
-                        placehold="Email.."
-                        onChange={(e) => setEmail(e.target.value)}
+                    <Item>
+                        <input
+                            placehold="Email.."
+                            onChange={(e) => setEmail(e.target.value)}
 
-                    />
+                        />
+                    </Item>
                 </Grid>
                 <Grid item xs={3}>
-                    <input placehold="Password.."
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={2}>
-                    <Button variant="contained" onClick={signIn}>Sign In</Button>
+                    <Item>
+                        <input placehold="Password.."
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Item>
                 </Grid>
 
                 <Grid item xs={2}>
-                    <Button variant="contained" onClick={signInWithGoogle}>Sign In with Google</Button>
+                    <Item>
+                        <Button variant="contained" onClick={signIn}>Sign In</Button>
+                    </Item>
+                </Grid>
+
+                <Grid item xs={2}>
+                    <Item>
+                        <Button variant="contained" onClick={signInWithGoogle}>Sign In with Google</Button>
+                    </Item>
                 </Grid>
                 <Grid item xs={2}>
-                    <Button variant="contained" onClick={logout}>LogOut</Button>
+                    <Item>
+                        <Button variant="contained" onClick={logout}>LogOut</Button>
+                    </Item>
                 </Grid>
+
 
             </Grid>
         </Box>
