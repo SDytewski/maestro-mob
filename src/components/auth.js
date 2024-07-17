@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 export const Auth = () => {
 
@@ -65,23 +67,25 @@ export const Auth = () => {
             <Grid item xs={12}>
                 <h1>Music Mob</h1>
              </Grid>   
-                <Grid item xs={3}>
-                    <Item>
+                {/* <Grid item xs={3}> */}
+                {/* <TextField id="outlined-basic" label="Email" variant="outlined"  onChange={(e) => setEmail(e.target.value)} /> */}
+                    {/* <Item> */}
                         <input
                             placehold="Email.."
                             onChange={(e) => setEmail(e.target.value)}
 
                         />
-                    </Item>
+                    {/* </Item>
                 </Grid>
-                <Grid item xs={3}>
-                    <Item>
+                <Grid item xs={3}> */}
+                {/* <TextField id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} /> */}
+                    {/* <Item> */}
                         <input placehold="Password.."
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                    </Item>
-                </Grid>
+                    {/* </Item>
+                </Grid> */}
 
                 <Grid item xs={2}>
                     <Item>
