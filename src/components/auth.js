@@ -67,7 +67,7 @@ export const Auth = () => {
             <Grid item xs={12}>
                 <h1>Music Mob</h1>
              </Grid>   
-                {/* <Grid item xs={3}> */}
+                <Grid item xs={3}>
                 {/* <TextField id="outlined-basic" label="Email" variant="outlined"  onChange={(e) => setEmail(e.target.value)} /> */}
                     {/* <Item> */}
                         <input
@@ -75,17 +75,17 @@ export const Auth = () => {
                             onChange={(e) => setEmail(e.target.value)}
 
                         />
-                    {/* </Item>
-                </Grid>
-                <Grid item xs={3}> */}
+                    {/* { </Item> */}
+                 </Grid>
+                <Grid item xs={3}> 
                 {/* <TextField id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} /> */}
-                    {/* <Item> */}
+                    {/* { <Item>} */}
                         <input placehold="Password.."
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                    {/* </Item>
-                </Grid> */}
+                    {/* {</Item> */}
+                </Grid>
 
                 <Grid item xs={2}>
                     <Item>
