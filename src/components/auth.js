@@ -64,26 +64,30 @@ export const Auth = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <h1>Music Mob</h1>
-             </Grid>   
+                <Grid item xs={12}>
+                    <h1>Music Mob</h1>
+                </Grid>
                 <Grid item xs={3}>
-                {/* <TextField id="outlined-basic" label="Email" variant="outlined"  onChange={(e) => setEmail(e.target.value)} /> */}
+                    <div>
+                        <TextField id="outlined-basic" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} />
+                    </div>
                     {/* <Item> */}
-                        <input
+                    {/* <input
                             placehold="Email.."
                             onChange={(e) => setEmail(e.target.value)}
 
-                        />
+                        /> */}
                     {/* { </Item> */}
-                 </Grid>
-                <Grid item xs={3}> 
-                {/* <TextField id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} /> */}
+                </Grid>
+                <Grid item xs={3}>
+                    <div>
+                    <TextField id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+                    </div>
                     {/* { <Item>} */}
-                        <input placehold="Password.."
+                    {/* <input placehold="Password.."
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
-                        />
+                        /> */}
                     {/* {</Item> */}
                 </Grid>
 
