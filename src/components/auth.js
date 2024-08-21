@@ -109,7 +109,7 @@ export const Auth = () => {
             </Typography>
             <Box component="form" noValidate sx={{ mt: 3 }}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
@@ -129,7 +129,7 @@ export const Auth = () => {
                     name="lastName"
                     autoComplete="family-name"
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -138,6 +138,7 @@ export const Auth = () => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -149,22 +150,29 @@ export const Auth = () => {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
+                
+               
               </Grid>
               <Button
-                type="submit"
+                // type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={() =>{ signIn() ; setEmail(' ')}}
               >
                 Sign Up
+              </Button>
+              <Button
+                // type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={logout}
+              >
+                Log Out
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
@@ -187,10 +195,10 @@ export const Auth = () => {
                 <Grid item xs={12}>
                     <h1>Music Mob</h1>
                 </Grid>
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                     <div>
-                        <TextField id="outlined-basic" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} />
-                    </div>
+                        <TextField id="outlined-basic" label="Email" variant="outlined" />
+                    </div> */}
                     {/* <Item> */}
                     {/* <input
                             placehold="Email.."
@@ -198,36 +206,36 @@ export const Auth = () => {
 
                         /> */}
                     {/* { </Item> */}
-                </Grid>
+                {/* </Grid>
                 <Grid item xs={6}>
                     <div>
-                    <TextField id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
-                    </div>
+                    <TextField id="outlined-basic" label="Password" variant="outlined"  />
+                    </div> */}
                     {/* { <Item>} */}
                     {/* <input placehold="Password.."
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                         /> */}
                     {/* {</Item> */}
-                </Grid>
+                {/* </Grid> */}
 
-                <Grid item xs={4}>
+                {/* <Grid item xs={4}>
                     
-                        <Button variant="contained"  onClick={() =>{ signIn() ; setEmail(' ')}}>Sign In</Button>
+                        <Button variant="contained" >Sign In</Button>
 
                     
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={4}>
+                {/* <Grid item xs={4}>
             
                         <Button variant="contained" onClick={signInWithGoogle}>Sign In with Google</Button>
                  
-                </Grid>
-                <Grid item xs={4}>
+                </Grid> */}
+                {/* <Grid item xs={4}>
                     
                         <Button variant="contained" onClick={logout}>LogOut</Button>
                  
-                </Grid>
+                </Grid> */}
 
 
             </Grid>
