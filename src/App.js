@@ -3,6 +3,10 @@ import './App.css';
 import { Auth } from "./components/auth";
 import { db, auth } from "./config/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
+import TextField from '@mui/material/TextField';
+// import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+// import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
 
 function App() {
   const [movieList, setMovieList] = useState([]);
@@ -70,6 +74,11 @@ function App() {
     <div className="App">
       <Auth />
       <div>
+      <ThemeProvider theme={customTheme(outerTheme)}>
+          <TextField label="Outlined" />
+  <TextField label="Filled" variant="filled" />
+  <TextField label="Standard" variant="standard" />
+</ThemeProvider>
          <input placeholder="name" onChange={(e) => setNewName(e.target.value)} /> 
         <input placeholder="location" onChange={(e) => setNewLocation(e.target.value)} />
         <input placeholder="level" onChange={(e) => setNewLevel(e.target.value)} />
