@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     getMovieList();
-    }, []);
+  }, []);
 
   const onSubmitMovie = async () => {
     try {
@@ -47,25 +47,25 @@ function App() {
         level: newLevel,
         instrument: newInstrument,
         userId: auth?.currentUser?.uid
-      });   
-      getMovieList();      
+      });
+      getMovieList();
     } catch (err) {
       console.error(err)
     }
   };
 
   //Delete is not working when user wants to authenticate by id and delete only their musician
-    const deleteMovie = async (id) => {
-      const movieDoc = doc(db, "musicians", id)
-      await deleteDoc(movieDoc, );
-      getMovieList(); 
-    }  
+  const deleteMovie = async (id) => {
+    const movieDoc = doc(db, "musicians", id)
+    await deleteDoc(movieDoc,);
+    getMovieList();
+  }
 
-    const updateMovieTitle = async (id) => {
-      const movieDoc = doc(db, "musicians", id)
-      await updateDoc(movieDoc, {name: updatedTitle});
-      getMovieList(); 
-    }  
+  const updateMovieTitle = async (id) => {
+    const movieDoc = doc(db, "musicians", id)
+    await updateDoc(movieDoc, { name: updatedTitle });
+    getMovieList();
+  }
 
 
 
@@ -74,16 +74,46 @@ function App() {
     <div className="App">
       <Auth />
       <div>
-      <ThemeProvider theme={customTheme(outerTheme)}>
-          <TextField label="Outlined" />
-  <TextField label="Filled" variant="filled" />
-  <TextField label="Standard" variant="standard" />
-</ThemeProvider>
-         <input placeholder="name" onChange={(e) => setNewName(e.target.value)} /> 
+        {/* <ThemeProvider > */}
+        <TextField InputProps={{
+          inputProps: {
+            style: { textAlign: "right" },
+          }
+        }} label="Name"
+          onChange={(e) => setNewName(e.target.value)}
+        />
+
+        <TextField InputProps={{
+          inputProps: {
+            style: { textAlign: "right" },
+          }
+        }} label="Location" variant="filled"
+          onChange={(e) => setNewLocation(e.target.value)}
+        />
+
+        <TextField InputProps={{
+          inputProps: {
+            style: { textAlign: "right" },
+          }
+        }} label="Level" variant="standard"
+          onChange={(e) => setNewLevel(e.target.value)}
+        />
+
+        <TextField InputProps={{
+          inputProps: {
+            style: { textAlign: "right" },
+          }
+        }} label="Instrument" variant="standard"
+          onChange={(e) => setNewInstrument(e.target.value)}
+        />
+
+
+        {/* </ThemeProvider> */}
+        {/* <input placeholder="name" onChange={(e) => setNewName(e.target.value)} />
         <input placeholder="location" onChange={(e) => setNewLocation(e.target.value)} />
         <input placeholder="level" onChange={(e) => setNewLevel(e.target.value)} />
-        <input placeholder="instrument" onChange={(e) => setNewInstrument(e.target.value)} />
- 
+        <input placeholder="instrument" onChange={(e) => setNewInstrument(e.target.value)} /> */}
+
 
         <button onClick={onSubmitMovie}> Submit Musician</button>
       </div>
@@ -96,10 +126,10 @@ function App() {
             <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
-            <button onClick={()=> deleteMovie(movie.id)}>Delete Musician</button>
+            <button onClick={() => deleteMovie(movie.id)}>Delete Musician</button>
 
-            <input placeholder="new title..." 
-            onChange={(e) => setUpdatedTitle(e.target.value)} 
+            <input placeholder="new title..."
+              onChange={(e) => setUpdatedTitle(e.target.value)}
             />
             < button onClick={() => updateMovieTitle(movie.id)}>Update Musician</button>
           </div>
