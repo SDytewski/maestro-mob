@@ -87,7 +87,7 @@ function App() {
           inputProps: {
             style: { textAlign: "right" },
           }
-        }} label="Location" variant="filled"
+        }} label="Location" 
           onChange={(e) => setNewLocation(e.target.value)}
         />
 
@@ -95,7 +95,7 @@ function App() {
           inputProps: {
             style: { textAlign: "right" },
           }
-        }} label="Level" variant="standard"
+        }} label="Level" 
           onChange={(e) => setNewLevel(e.target.value)}
         />
 
@@ -103,7 +103,7 @@ function App() {
           inputProps: {
             style: { textAlign: "right" },
           }
-        }} label="Instrument" variant="standard"
+        }} label="Instrument"
           onChange={(e) => setNewInstrument(e.target.value)}
         />
 
