@@ -4,6 +4,7 @@ import { Auth } from "./components/auth";
 import { db, auth } from "./config/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 // import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 // import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
@@ -16,6 +17,7 @@ function App() {
   const [newLocation, setNewLocation] = useState("");
   const [newLevel, setNewLevel] = useState("");
   const [newInstrument, setNewInstrument] = useState("");
+  const [reset, setReset] = useState("");
 
   const [updatedTitle, setUpdatedTitle] = useState("")
 
@@ -63,11 +65,10 @@ function App() {
 
   const updateMovieTitle = async (id) => {
     const movieDoc = doc(db, "musicians", id)
-    await updateDoc(movieDoc, { name: updatedTitle });
+    await updateDoc(movieDoc, { name: updatedTitle })
     getMovieList();
+    
   }
-
-
 
 
   return (
@@ -115,7 +116,8 @@ function App() {
         <input placeholder="instrument" onChange={(e) => setNewInstrument(e.target.value)} /> */}
 
 
-        <button onClick={onSubmitMovie}> Submit Musician</button>
+        {/* <button onClick={onSubmitMovie}> Submit Musician</button> */}
+        <Button variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
       </div>
       <div>
         {movieList.map((movie, i) => (
@@ -126,12 +128,13 @@ function App() {
             <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
-            <button onClick={() => deleteMovie(movie.id)}>Delete Musician</button>
+            <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
 
             <input placeholder="new title..."
+            reset="name"
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
-            < button onClick={() => updateMovieTitle(movie.id)}>Update Musician</button>
+            < Button variant="outlined" onClick={() => {updateMovieTitle(movie.id); setReset("")}}>Update Name</Button>
           </div>
 
         )
