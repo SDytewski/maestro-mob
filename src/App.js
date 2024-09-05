@@ -130,7 +130,7 @@ function App() {
             <p>Instrument: {movie.instrument}</p>
             <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
 
-            <input placeholder="new title..."
+            <TextField placeholder="new title..."
             reset="name"
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
