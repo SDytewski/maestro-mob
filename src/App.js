@@ -17,7 +17,7 @@ function App() {
   const [newLocation, setNewLocation] = useState("");
   const [newLevel, setNewLevel] = useState("");
   const [newInstrument, setNewInstrument] = useState("");
-  const [reset, setReset] = useState("");
+  // const [reset, setReset] = useState("");
 
   const [updatedTitle, setUpdatedTitle] = useState("")
 
@@ -70,6 +70,9 @@ function App() {
     
   }
 
+  const handleClear = () => {
+    setUpdatedTitle('')
+  };
 
   return (
     <div className="App">
@@ -130,11 +133,13 @@ function App() {
             <p>Instrument: {movie.instrument}</p>
             <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
 
-            <TextField placeholder="new title..."
+            <TextField 
+            placeholder="new title..."
             reset="name"
+            value={updatedTitle}
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
-            < Button variant="outlined" onClick={() => {updateMovieTitle(movie.id); setReset("")}}>Update Name</Button>
+            < Button variant="outlined" onClick={() => {updateMovieTitle(movie.id); handleClear()}}>Update Name</Button>
           </div>
 
         )
