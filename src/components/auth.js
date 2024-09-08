@@ -11,7 +11,6 @@ import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -19,97 +18,99 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
-export const Auth = () => {
+export const Auth = ({setToken}) => {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
 
-    console.log(auth?.currentUser?.email);
-
-
-    //  console.log(auth?.currentUser.email);   
-    const signIn = async () => {
-        setEmail(" ");
-
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-        } catch (err) {
-            console.error(err);
-        }
-
-    };
+  console.log(auth?.currentUser?.email);
 
 
-    const signInWithGoogle = async () => {
+  //  console.log(auth?.currentUser.email);   
+  const signIn = async () => {
+    setEmail(" ");
 
-        try {
-            await signInWithPopup(auth, googleProvider);
-        } catch (err) {
-            console.error(err);
-        }
+    try {
+      const cookie = await createUserWithEmailAndPassword(auth, email, password);
+      setToken(cookie.user.accessToken);
+    } catch (err) {
+      console.error(err);
+    }
 
-    };
+  };
 
 
-    const logout = async () => {
+  const signInWithGoogle = async () => {
 
-        try {
-            await signOut(auth);
-        } catch (err) {
-            console.error(err);
-        }
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      console.error(err);
+    }
 
-    };
-    
+  };
 
-    function Copyright(props) {
-        return (
-          <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            {/* <Link color="inherit" href="https://mui.com/">
+
+  const logout = async () => {
+
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error(err);
+    }
+
+  };
+
+
+  function Copyright(props) {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        {/* <Link color="inherit" href="https://mui.com/">
               Your Website
             </Link>{' '} */}
-            {new Date().getFullYear()}
-            {'.'}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
+  const defaultTheme = createTheme();
+
+
+
+  return (
+
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
           </Typography>
-        );
-      }
-
-
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
-
-    const defaultTheme = createTheme();
-
-
-
-    return (
-
-        <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign up
-            </Typography>
-            <Box component="form" noValidate sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
-                {/* <Grid item xs={12} sm={6}>
+          <Box component="form" noValidate sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              {/* <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
@@ -130,118 +131,128 @@ export const Auth = () => {
                     autoComplete="family-name"
                   />
                 </Grid> */}
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </Grid>
-                
-               
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </Grid>
-              <Button
-                // type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={() =>{ signIn() ; setEmail(' ')}}
-              >
-                Sign Up
-              </Button>
-              <Button
-                // type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={logout}
-              >
-                Log Out
-              </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  {/* <Link href="#" variant="body2">
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+
+
+            </Grid>
+            <Button
+              // type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => { signIn(); setEmail(' ') }}
+            >
+              Sign Up
+            </Button>
+
+
+            <Button variant="contained" 
+            fullWidth
+            sx={{ mt: 3, mb: 2 }}
+            onClick={signInWithGoogle}
+            >
+              Sign In with Google
+            </Button>
+
+            <Button
+              // type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={logout}
+            >
+              Log Out
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                {/* <Link href="#" variant="body2">
                     Already have an account? Sign in
                   </Link> */}
-                </Grid>
               </Grid>
-            </Box>
+            </Grid>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
-        </Container>
-      
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
 
 
 
 
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <h1>Music Mob</h1>
-                </Grid>
-                {/* <Grid item xs={6}>
+
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <h1>Music Mob</h1>
+          </Grid>
+          {/* <Grid item xs={6}>
                     <div>
                         <TextField id="outlined-basic" label="Email" variant="outlined" />
                     </div> */}
-                    {/* <Item> */}
-                    {/* <input
+          {/* <Item> */}
+          {/* <input
                             placehold="Email.."
                             onChange={(e) => setEmail(e.target.value)}
 
                         /> */}
-                    {/* { </Item> */}
-                {/* </Grid>
+          {/* { </Item> */}
+          {/* </Grid>
                 <Grid item xs={6}>
                     <div>
                     <TextField id="outlined-basic" label="Password" variant="outlined"  />
                     </div> */}
-                    {/* { <Item>} */}
-                    {/* <input placehold="Password.."
+          {/* { <Item>} */}
+          {/* <input placehold="Password.."
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                         /> */}
-                    {/* {</Item> */}
-                {/* </Grid> */}
+          {/* {</Item> */}
+          {/* </Grid> */}
 
-                {/* <Grid item xs={4}>
+          {/* <Grid item xs={4}>
                     
                         <Button variant="contained" >Sign In</Button>
 
                     
                 </Grid> */}
 
-                {/* <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             
                         <Button variant="contained" onClick={signInWithGoogle}>Sign In with Google</Button>
                  
                 </Grid> */}
-                {/* <Grid item xs={4}>
+          {/* <Grid item xs={4}>
                     
                         <Button variant="contained" onClick={logout}>LogOut</Button>
                  
                 </Grid> */}
 
 
-            </Grid>
-        </Box>
-        </ThemeProvider>
-    );
+        </Grid>
+      </Box>
+    </ThemeProvider>
+  );
 
 };
 

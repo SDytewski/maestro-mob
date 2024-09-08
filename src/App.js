@@ -17,6 +17,8 @@ function App() {
   const [newLocation, setNewLocation] = useState("");
   const [newLevel, setNewLevel] = useState("");
   const [newInstrument, setNewInstrument] = useState("");
+  const [token, setToken] = useState("");
+
   // const [reset, setReset] = useState("");
 
   const [updatedTitle, setUpdatedTitle] = useState("")
@@ -67,7 +69,7 @@ function App() {
     const movieDoc = doc(db, "musicians", id)
     await updateDoc(movieDoc, { name: updatedTitle })
     getMovieList();
-    
+
   }
 
   const handleClear = () => {
@@ -75,8 +77,10 @@ function App() {
   };
 
   return (
+
     <div className="App">
-      <Auth />
+
+      <Auth setToken={setToken} />
       <div>
         {/* <ThemeProvider > */}
         <TextField InputProps={{
@@ -91,7 +95,7 @@ function App() {
           inputProps: {
             style: { textAlign: "right" },
           }
-        }} label="Location" 
+        }} label="Location"
           onChange={(e) => setNewLocation(e.target.value)}
         />
 
@@ -99,7 +103,7 @@ function App() {
           inputProps: {
             style: { textAlign: "right" },
           }
-        }} label="Level" 
+        }} label="Level"
           onChange={(e) => setNewLevel(e.target.value)}
         />
 
@@ -131,15 +135,16 @@ function App() {
             <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
-            <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
-
-            <TextField 
-            placeholder="new title..."
-            reset="name"
-            value={updatedTitle}
+            { token &&  
+              <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
+            }
+            <TextField
+              placeholder="new title..."
+              reset="name"
+              value={updatedTitle}
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
-            < Button variant="outlined" onClick={() => {updateMovieTitle(movie.id); handleClear()}}>Update Name</Button>
+            < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
           </div>
 
         )
