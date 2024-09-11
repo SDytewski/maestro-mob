@@ -18,9 +18,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
-export const Auth = ({setToken}) => {
+export const Auth = ({setToken, handleClear, setEmail, email}) => {
 
-  const [email, setEmail] = useState("");
+  
   const [password, setPassword] = useState("");
   
 
@@ -139,6 +139,7 @@ export const Auth = ({setToken}) => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
@@ -162,7 +163,7 @@ export const Auth = ({setToken}) => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => { signIn(); setEmail(' ') }}
+              onClick={() => { signIn(); setEmail(' '); handleClear() }}
             >
               Sign Up
             </Button>
