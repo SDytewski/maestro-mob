@@ -19,6 +19,7 @@ function App() {
   const [newInstrument, setNewInstrument] = useState("");
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // const [reset, setReset] = useState("");
 
@@ -76,13 +77,14 @@ function App() {
   const handleClear = () => {
     setUpdatedTitle('')
     setEmail('')
+    setPassword('')
   };
 
   return (
 
     <div className="App">
 
-      <Auth setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email}/>
+      <Auth setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password}/>
       <div>
         {/* <ThemeProvider > */}
         <TextField InputProps={{

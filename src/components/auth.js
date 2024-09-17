@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControlLabel from '@mui/material/FormControlLabel';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -18,11 +18,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
-export const Auth = ({setToken, handleClear, setEmail, email}) => {
-
-  
-  const [password, setPassword] = useState("");
-  
+export const Auth = ({setToken, handleClear, setEmail, email, setPassword, password}) => {
+ 
 
   console.log(auth?.currentUser?.email);
 
@@ -151,6 +148,7 @@ export const Auth = ({setToken, handleClear, setEmail, email}) => {
                   label="Password"
                   type="password"
                   id="password"
+                  value={password}
                   autoComplete="new-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
