@@ -55,8 +55,15 @@ function App() {
         userId: auth?.currentUser?.uid
       });
       getMovieList();
+      setNewName('');
+      setNewLocation('');
+      setNewLevel('');
+      setNewInstrument('');
+
+
     } catch (err) {
       console.error(err)
+
     }
   };
 
@@ -92,6 +99,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Name"
+           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
 
@@ -100,6 +108,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Location"
+           value={newLocation} 
           onChange={(e) => setNewLocation(e.target.value)}
         />
 
@@ -108,6 +117,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Level"
+          value={newLevel}
           onChange={(e) => setNewLevel(e.target.value)}
         />
 
@@ -116,6 +126,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Instrument"
+           value={newInstrument}
           onChange={(e) => setNewInstrument(e.target.value)}
         />
 
