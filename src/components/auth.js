@@ -107,14 +107,16 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" >
             Sign up
           </Typography>
           <Typography
             variant="h6"
-
           >
-            {banner}
+               
+             {auth?.currentUser?.email === undefined ? "<div>You are not in </div>":
+            "<div>You ARE in!</div>"}
+           
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
