@@ -18,19 +18,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
-export const Auth = ({setToken, handleClear, setEmail, email, setPassword, password}) => {
- 
+export const Auth = ({ token, setToken, handleClear, setEmail, email, setPassword, password, setBanner, banner }) => {
+
 
   console.log(auth?.currentUser?.email);
+  if (auth?.currentUser?.email === undefined) {
+    setBanner("Logged Out")
+
+  } else { setBanner("Logged In") }
 
 
   //  console.log(auth?.currentUser.email);   
   const signIn = async () => {
     setEmail(" ");
-
+   
     try {
       const cookie = await createUserWithEmailAndPassword(auth, email, password);
-      setToken(cookie.user.accessToken);
+      setToken(cookie.user.accessToken)
     } catch (err) {
       console.error(err);
     }
@@ -50,9 +54,10 @@ export const Auth = ({setToken, handleClear, setEmail, email, setPassword, passw
 
 
   const logout = async () => {
-
+  
     try {
       await signOut(auth);
+      setBanner("Logged Out")
     } catch (err) {
       console.error(err);
     }
@@ -104,6 +109,12 @@ export const Auth = ({setToken, handleClear, setEmail, email, setPassword, passw
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
+          </Typography>
+          <Typography
+            variant="h6"
+
+          >
+            {banner}
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -167,10 +178,10 @@ export const Auth = ({setToken, handleClear, setEmail, email, setPassword, passw
             </Button>
 
 
-            <Button variant="contained" 
-            fullWidth
-            sx={{ mt: 3, mb: 2 }}
-            onClick={signInWithGoogle}
+            <Button variant="contained"
+              fullWidth
+              sx={{ mt: 3, mb: 2 }}
+              onClick={signInWithGoogle}
             >
               Sign In with Google
             </Button>

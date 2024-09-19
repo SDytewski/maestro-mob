@@ -20,6 +20,7 @@ function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [banner, setBanner] = useState("")
 
   // const [reset, setReset] = useState("");
 
@@ -91,7 +92,7 @@ function App() {
 
     <div className="App">
 
-      <Auth setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password}/>
+      <Auth token={token} setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password} banner={banner} setBanner={setBanner}/>
       <div>
         {/* <ThemeProvider > */}
         <TextField InputProps={{
