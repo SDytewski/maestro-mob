@@ -1,5 +1,7 @@
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import { useState } from "react";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -30,7 +32,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
 
   //  console.log(auth?.currentUser.email);   
   const signIn = async () => {
-    setEmail(" ");
+
    
     try {
       const cookie = await createUserWithEmailAndPassword(auth, email, password);
@@ -40,6 +42,22 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
     }
 
   };
+
+  const LogIn = async () => {
+
+    setEmail(" ");
+   
+    try {
+      const cookie = await signInWithEmailAndPassword(auth, email, password);
+      setToken(cookie.user.accessToken)
+    } catch (err) {
+      console.error(err);
+    }
+
+
+
+
+  }
 
 
   const signInWithGoogle = async () => {
@@ -177,6 +195,16 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
               onClick={() => { signIn(); setEmail(' '); handleClear() }}
             >
               Sign Up
+            </Button>
+
+            <Button
+              // type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => { LogIn(); setEmail(' '); handleClear() }}
+            >
+              Log In
             </Button>
 
 
