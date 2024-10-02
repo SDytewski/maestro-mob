@@ -92,7 +92,7 @@ function App() {
 
     <div className="App">
 
-      <Auth token={token} setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password} banner={banner} setBanner={setBanner}/>
+      <Auth token={token} setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password} banner={banner} setBanner={setBanner} />
       <div>
         {/* <ThemeProvider > */}
         <TextField InputProps={{
@@ -100,7 +100,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Name"
-           value={newName}
+          value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
 
@@ -109,7 +109,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Location"
-           value={newLocation} 
+          value={newLocation}
           onChange={(e) => setNewLocation(e.target.value)}
         />
 
@@ -127,7 +127,7 @@ function App() {
             style: { textAlign: "right" },
           }
         }} label="Instrument"
-           value={newInstrument}
+          value={newInstrument}
           onChange={(e) => setNewInstrument(e.target.value)}
         />
 
@@ -151,7 +151,7 @@ function App() {
             <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
-            { token &&  
+            {token &&
               <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
             }
             <TextField
@@ -160,9 +160,10 @@ function App() {
               value={updatedTitle}
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
-            < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+            {token &&
+              < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+            }
           </div>
-
         )
         )}
       </div>
