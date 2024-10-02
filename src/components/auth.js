@@ -36,6 +36,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
    
     try {
       const cookie = await createUserWithEmailAndPassword(auth, email, password);
+      //Token from firebase
       setToken(cookie.user.accessToken)
     } catch (err) {
       console.error(err);
@@ -221,7 +222,8 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={logout}
+              onClick={() => {logout(); setToken(null)}}
+              
             >
               Log Out
             </Button>
