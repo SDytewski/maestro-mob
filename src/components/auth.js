@@ -134,7 +134,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           >
                
              {auth?.currentUser?.email === undefined ? <Typography  sx={{ p: 3, m:2,  bgcolor: 'text.disabled',color: "#FFFFFF",  border: 1  }}>YOU ARE NOT LOGGED IN</Typography>:
-            <Typography  sx={{ p: 3, m:2,  bgcolor: 'text.secondary',color: "#FFFFFF",  border: 3  }}>YOU ARE LOGGED IN!</Typography>}
+            <Typography  sx={{ p: 3, m:2,  bgcolor: 'text.secondary',color: "#FFFFFF",  border: 3  }}>YOU ARE LOGGED IN</Typography>}
            
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
