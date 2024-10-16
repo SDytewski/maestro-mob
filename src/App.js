@@ -93,9 +93,9 @@ function App() {
     <div className="App">
 
       <Auth token={token} setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password} banner={banner} setBanner={setBanner} />
-      <div>
+      <div >
         {/* <ThemeProvider > */}
-        <TextField InputProps={{
+        <TextField sx={{ m: 2 }}  InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -104,7 +104,7 @@ function App() {
           onChange={(e) => setNewName(e.target.value)}
         />
 
-        <TextField InputProps={{
+        <TextField sx={{ m: 2 }} InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -113,7 +113,7 @@ function App() {
           onChange={(e) => setNewLocation(e.target.value)}
         />
 
-        <TextField InputProps={{
+        <TextField sx={{ m: 2 }}  InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -122,7 +122,7 @@ function App() {
           onChange={(e) => setNewLevel(e.target.value)}
         />
 
-        <TextField InputProps={{
+        <TextField sx={{ m: 2 }}  InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -140,7 +140,7 @@ function App() {
 
 
         {/* <button onClick={onSubmitMovie}> Submit Musician</button> */}
-        <Button variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
+        <Button sx={{ m: 2 }}  variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
       </div>
       <div>
         {movieList.map((movie, i) => (
