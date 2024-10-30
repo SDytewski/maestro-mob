@@ -115,6 +115,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <h1>Music Mob</h1>
         <Box
           sx={{
             marginTop: 8,
