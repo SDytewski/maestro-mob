@@ -21,6 +21,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [banner, setBanner] = useState("")
+  const [isEditing, setIsEditing] = useState(null);
 
   // const [reset, setReset] = useState("");
 
@@ -160,6 +161,9 @@ function App() {
               value={updatedTitle}
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
+            <div style={{ width: "100%" }}>
+            <Button sx={{ m: 2 }}  variant="contained" >Edit Musician</Button>
+            </div>
             {token &&
               < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
             }
