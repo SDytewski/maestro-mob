@@ -69,6 +69,19 @@ function App() {
     }
   };
 
+
+  // function editMusician(id) {
+  //   const updatedTodos = [...todos].map((todo) => {
+  //     if (todo.id === id) {
+  //       todo.taskName = editingText;
+  //     }
+  //     return todo;
+  //   });
+  //   setTodos(updatedTodos);
+  //   setIsEditing(null);
+  // }
+
+
   //Delete is not working when user wants to authenticate by id and delete only their musician
   const deleteMovie = async (id) => {
     const movieDoc = doc(db, "musicians", id)
@@ -77,6 +90,7 @@ function App() {
   }
 
   const updateMovieTitle = async (id) => {
+    // console.log(id)
     const movieDoc = doc(db, "musicians", id)
     await updateDoc(movieDoc, { name: updatedTitle })
     getMovieList();
@@ -155,14 +169,17 @@ function App() {
             {token &&
               <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
             }
+
+            
             <TextField
+              // name={`editMusician${movie.id}`}
               placeholder="new title..."
               reset="name"
               value={updatedTitle}
               onChange={(e) => setUpdatedTitle(e.target.value)}
             />
             <div style={{ width: "100%" }}>
-            <Button sx={{ m: 2 }}  variant="contained" >Edit Musician</Button>
+            {/* <Button sx={{ m: 2 }}  variant="contained" >Edit Musician</Button> */}
             </div>
             {token &&
               < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>

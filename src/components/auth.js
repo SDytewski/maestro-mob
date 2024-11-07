@@ -23,7 +23,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 export const Auth = ({ token, setToken, handleClear, setEmail, email, setPassword, password, setBanner, banner }) => {
 
 
-  console.log(auth?.currentUser?.email);
+  // console.log(auth?.currentUser?.email);
   if (auth?.currentUser?.email === undefined) {
     setBanner("Logged Out")
 
