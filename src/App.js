@@ -23,6 +23,7 @@ function App() {
   const [banner, setBanner] = useState("")
   const [isEditing, setIsEditing] = useState(null);
 
+
   // const [reset, setReset] = useState("");
 
   const [updatedTitle, setUpdatedTitle] = useState("")
@@ -94,6 +95,7 @@ function App() {
     const movieDoc = doc(db, "musicians", id)
     await updateDoc(movieDoc, { name: updatedTitle })
     getMovieList();
+    setIsEditing(false);
 
   }
 
@@ -110,7 +112,7 @@ function App() {
       <Auth token={token} setToken={setToken} handleClear={handleClear} setEmail={setEmail} email={email} setPassword={setPassword} password={password} banner={banner} setBanner={setBanner} />
       <div >
         {/* <ThemeProvider > */}
-        <TextField sx={{ m: 2 }}  InputProps={{
+        <TextField sx={{ m: 2 }} InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -128,7 +130,7 @@ function App() {
           onChange={(e) => setNewLocation(e.target.value)}
         />
 
-        <TextField sx={{ m: 2 }}  InputProps={{
+        <TextField sx={{ m: 2 }} InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -137,7 +139,7 @@ function App() {
           onChange={(e) => setNewLevel(e.target.value)}
         />
 
-        <TextField sx={{ m: 2 }}  InputProps={{
+        <TextField sx={{ m: 2 }} InputProps={{
           inputProps: {
             style: { textAlign: "right" },
           }
@@ -155,7 +157,7 @@ function App() {
 
 
         {/* <button onClick={onSubmitMovie}> Submit Musician</button> */}
-        <Button sx={{ m: 2 }}  variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
+        <Button sx={{ m: 2 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
       </div>
       <div>
         {movieList.map((movie, i) => (
@@ -170,20 +172,29 @@ function App() {
               <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
             }
 
-            
-            <TextField
-              // name={`editMusician${movie.id}`}
-              placeholder="new title..."
-              reset="name"
-              value={updatedTitle}
-              onChange={(e) => setUpdatedTitle(e.target.value)}
-            />
+
+          
             <div style={{ width: "100%" }}>
-            {/* <Button sx={{ m: 2 }}  variant="contained" >Edit Musician</Button> */}
+
+              <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(true) }} >Edit Musician</Button>
             </div>
-            {token &&
-              < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
-            }
+            <div>
+              { isEditing ?
+                  <TextField
+                  // name={`editMusician${movie.id}`}
+                  placeholder="new title..."
+                  reset="name"
+                  value={updatedTitle}
+                  onChange={(e) => setUpdatedTitle(e.target.value)}
+                />
+                : <div>Not Editing</div>
+              }
+
+
+              {token &&
+                < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+              }
+            </div>
           </div>
         )
         )}
