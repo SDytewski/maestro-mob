@@ -161,7 +161,7 @@ function App() {
       </div>
       <div>
         {movieList.map((movie, i) => (
-          <div key={i}>
+          <div key={movie.id}>
             <h1 >
               {movie.name}
             </h1>
@@ -176,10 +176,10 @@ function App() {
           
             <div style={{ width: "100%" }}>
 
-              <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(true) }} >Edit Musician</Button>
+              <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(true); console.log(movie.id) }} >Edit Musician</Button>
             </div>
             <div>
-              { isEditing ?
+              { movie.id === isEditing ? (
                   <TextField
                   // name={`editMusician${movie.id}`}
                   placeholder="new title..."
@@ -187,7 +187,8 @@ function App() {
                   value={updatedTitle}
                   onChange={(e) => setUpdatedTitle(e.target.value)}
                 />
-                : <div>Not Editing</div>
+              )
+                : (<div>Not Editing</div>)
               }
 
 
