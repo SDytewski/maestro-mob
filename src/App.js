@@ -176,12 +176,13 @@ function App() {
           
             <div style={{ width: "100%" }}>
 
-              <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(true); console.log(movie.id) }} >Edit Musician</Button>
+              <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(movie.id)}} >Edit Musician</Button>
             </div>
             <div>
               { movie.id === isEditing ? (
-                  <TextField
-                  // name={`editMusician${movie.id}`}
+                 
+                 <TextField
+                  name={`updateMovieTitle${movie.id}`}
                   placeholder="new title..."
                   reset="name"
                   value={updatedTitle}
