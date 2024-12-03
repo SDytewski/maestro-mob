@@ -180,7 +180,7 @@ function App() {
             </div>
             <div>
               { movie.id === isEditing ? (
-                 
+              <div>
                  <TextField
                   name={`updateMovieTitle${movie.id}`}
                   placeholder="new title..."
@@ -188,6 +188,9 @@ function App() {
                   value={updatedTitle}
                   onChange={(e) => setUpdatedTitle(e.target.value)}
                 />
+                
+                <Button variant ="outlined" onClick={() => { setNewName(movie.name) }}>Save Name </Button>
+               </div>
               )
                 : (<div>Not Editing</div>)
               }
