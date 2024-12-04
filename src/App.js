@@ -179,7 +179,7 @@ function App() {
               <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(movie.id)}} >Edit Musician</Button>
             </div>
             <div>
-              { movie.id === isEditing ? (
+              {token && movie.id === isEditing ? (
               <div>
                  <TextField
                   name={`updateMovieTitle${movie.id}`}
@@ -189,7 +189,7 @@ function App() {
                   onChange={(e) => setUpdatedTitle(e.target.value)}
                 />
                 
-                <Button variant ="outlined" onClick={() => { setNewName(movie.name) }}>Save Name </Button>
+                < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
                </div>
               )
                 : (<div>Not Editing</div>)
