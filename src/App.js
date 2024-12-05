@@ -169,34 +169,33 @@ function App() {
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
             {token &&
-              <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
+              <div style={{ width: "100%" }}>
+                <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
+
+                <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(token) }} >Edit Musician</Button>
+              </div>
+
             }
-
-
-          
-            <div style={{ width: "100%" }}>
-
-              <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(movie.id)}} >Edit Musician</Button>
-            </div>
             <div>
-              
-             {token && movie.id === isEditing ? (
-              <div>
-                 <TextField
-                  name={`updateMovieTitle${movie.id}`}
-                  placeholder="new title..."
-                  reset="name"
-                  value={updatedTitle}
-                  onChange={(e) => setUpdatedTitle(e.target.value)}
-                />
-                
-                < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
-               </div>
+
+              {token && movie.id === isEditing ? (
+                <div>
+                  <TextField
+                    name={`updateMovieTitle${movie.id}`}
+                    placeholder="new title..."
+                    reset="name"
+                    value={updatedTitle}
+                    onChange={(e) => setUpdatedTitle(e.target.value)}
+                  />
+
+                  < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+                  < Button variant="outlined" onClick={() => { setIsEditing(false) }}>Cancel</Button>
+                </div>
               )
                 : (<div>Not Editing</div>)
               }
 
-{/* 
+              {/* 
               {token &&
                 < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
               } */}
