@@ -22,10 +22,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export const Auth = ({ token, setToken, handleClear, setEmail, email, setPassword, password, setBanner, banner }) => {
 
+const [failure, setFailure] = useState(false);;
 
-  // console.log(auth?.currentUser?.email);
+  console.log(auth?.currentUser?.email);
   if (auth?.currentUser?.email === undefined) {
     setBanner("Logged Out")
+    
 
   } else { setBanner("Logged In") }
 
@@ -38,8 +40,10 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
       const cookie = await createUserWithEmailAndPassword(auth, email, password);
       //Token from firebase
       setToken(cookie.user.accessToken)
+      setFailure(false)
     } catch (err) {
       console.error(err);
+      setFailure(true)
     }
 
   };
@@ -51,8 +55,10 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
     try {
       const cookie = await signInWithEmailAndPassword(auth, email, password);
       setToken(cookie.user.accessToken)
+      setFailure(false)
     } catch (err) {
       console.error(err);
+      setFailure(true)
     }
 
 
@@ -67,6 +73,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
       await signInWithPopup(auth, googleProvider);
     } catch (err) {
       console.error(err);
+      setFailure(true)
     }
 
   };
@@ -79,6 +86,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
       setBanner("Logged Out")
     } catch (err) {
       console.error(err);
+      
     }
 
   };
@@ -116,6 +124,8 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <h1>Music Mob</h1>
+        
+        {failure && <div>help</div>}
         <Box
           sx={{
             marginTop: 8,
