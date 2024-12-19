@@ -125,7 +125,7 @@ const [failure, setFailure] = useState(false);;
         <CssBaseline />
         <h1>Music Mob</h1>
         
-        {failure && <div>help</div>}
+        {failure && <div>Error with Login, Please Try Again</div>}
         <Box
           sx={{
             marginTop: 8,
