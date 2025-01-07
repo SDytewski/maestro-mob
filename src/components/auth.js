@@ -1,3 +1,4 @@
+import { useEffect} from "react";
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -22,7 +23,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export const Auth = ({ token, setToken, handleClear, setEmail, email, setPassword, password, setBanner, banner }) => {
 
-const [failure, setFailure] = useState(false);;
+const [failure, setFailure] = useState(false);
+const [showLogin, setShowLogin] = useState(false);
+
+
+useEffect(() => {
+token && setFailure(false) || setFailure(false);
+
+})
 
   console.log(auth?.currentUser?.email);
   if (auth?.currentUser?.email === undefined) {
@@ -44,6 +52,7 @@ const [failure, setFailure] = useState(false);;
     } catch (err) {
       console.error(err);
       setFailure(true)
+      
     }
 
   };
@@ -125,7 +134,7 @@ const [failure, setFailure] = useState(false);;
         <CssBaseline />
         <h1>Music Mob</h1>
         
-        {failure && <div>Error with Login, Please Try Again</div>}
+        {failure &&  <h2>Error with Login, Please Try Again</h2>}
         <Box
           sx={{
             marginTop: 8,
@@ -199,6 +208,7 @@ const [failure, setFailure] = useState(false);;
 
 
             </Grid>
+           
             <Button
               // type="submit"
               fullWidth
@@ -209,6 +219,8 @@ const [failure, setFailure] = useState(false);;
               Sign Up
             </Button>
 
+            {auth?.currentUser?.email === undefined &&
+
             <Button
               // type="submit"
               fullWidth
@@ -218,6 +230,7 @@ const [failure, setFailure] = useState(false);;
             >
               Log In
             </Button>
+}
 
 
             <Button variant="contained"
