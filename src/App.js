@@ -168,7 +168,7 @@ function App() {
             <p>Location: {movie.location}</p>
             <p>Level: {movie.level}</p>
             <p>Instrument: {movie.instrument}</p>
-            {token &&
+            {auth?.currentUser?.email &&
               <div style={{ width: "100%" }}>
                 <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
 

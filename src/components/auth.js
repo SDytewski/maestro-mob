@@ -27,10 +27,10 @@ const [failure, setFailure] = useState(false);
 const [showLogin, setShowLogin] = useState(false);
 
 
-useEffect(() => {
-token && setFailure(false) || setFailure(false);
+// useEffect(() => {
+// token && setFailure(false) || setFailure(false);
 
-})
+// })
 
   console.log(auth?.currentUser?.email);
   if (auth?.currentUser?.email === undefined) {
@@ -60,11 +60,12 @@ token && setFailure(false) || setFailure(false);
   const LogIn = async () => {
 
     setEmail(" ");
+    setFailure(false)
    
     try {
       const cookie = await signInWithEmailAndPassword(auth, email, password);
       setToken(cookie.user.accessToken)
-      setFailure(false)
+     
     } catch (err) {
       console.error(err);
       setFailure(true)
@@ -134,7 +135,7 @@ token && setFailure(false) || setFailure(false);
         <CssBaseline />
         <h1>Music Mob</h1>
         
-        {failure &&  <h2>Error with Login, Please Try Again</h2>}
+        {failure && <div>Error with Login, Please Try Again</div>}
         <Box
           sx={{
             marginTop: 8,
