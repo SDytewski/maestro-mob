@@ -241,6 +241,7 @@ token && setFailure(false) || setFailure(false);
               Sign In with Google
             </Button>
 
+ {auth?.currentUser?.email &&
             <Button
               // type="submit"
               fullWidth
@@ -251,6 +252,10 @@ token && setFailure(false) || setFailure(false);
             >
               Log Out
             </Button>
+
+ }
+
+  
             <Grid container justifyContent="flex-end">
               <Grid item>
                 {/* <Link href="#" variant="body2">
