@@ -135,7 +135,7 @@ const [showLogin, setShowLogin] = useState(false);
         <CssBaseline />
         <h1>Music Mob</h1>
         
-        {failure && <div>Error with Login, Please Try Again</div>}
+        {failure && <div>Error with Login</div>}
         <Box
           sx={{
             marginTop: 8,
