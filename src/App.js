@@ -7,6 +7,9 @@ import { db, auth } from "./config/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Box from '@mui/material/Box';
 // import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 // import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
@@ -162,8 +165,11 @@ function App() {
         <Button sx={{ m: 2 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
       </div>
       <div>
+      <Container maxWidth="lg">
+      <Box sx={{ flexGrow: 1 }} padding={2} >
+      <Grid container spacing={2} >
         {movieList.map((movie, i) => (
-          <Card variant="outlined" sx={{ minWidth: 275 }}>
+          <Card variant="outlined" sx={{ minWidth: 275, maxWidth:600 }}>
             <CardContent>
               <div key={movie.id}>
 
@@ -209,8 +215,12 @@ function App() {
               </div>
             </CardContent>
           </Card>
+          
         )
         )}
+        </Grid>
+        </Box>
+        </Container>
 
       </div>
 
