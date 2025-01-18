@@ -167,9 +167,10 @@ function App() {
       <div>
       <Container maxWidth="lg">
       <Box sx={{ flexGrow: 1 }} padding={2} >
-      <Grid container spacing={2} >
+      <Grid container spacing={2} justify="center" >
         {movieList.map((movie, i) => (
-          <Card variant="outlined" sx={{ minWidth: 275, maxWidth:600 }}>
+          <Grid item sm={3}>
+          <Card variant="outlined" sx={{ minWidth: 275, maxWidth:600 }} >
             <CardContent>
               <div key={movie.id}>
 
@@ -215,6 +216,7 @@ function App() {
               </div>
             </CardContent>
           </Card>
+          </Grid>
           
         )
         )}
