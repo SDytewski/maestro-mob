@@ -1,7 +1,8 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { purple, red } from '@mui/material/colors';
 
 import { useState } from "react";
 import * as React from 'react';
@@ -23,19 +24,19 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export const Auth = ({ token, setToken, handleClear, setEmail, email, setPassword, password, setBanner, banner }) => {
 
-const [failure, setFailure] = useState(false);
-const [showLogin, setShowLogin] = useState(false);
+  const [failure, setFailure] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
 
-// useEffect(() => {
-// token && setFailure(false) || setFailure(false);
+  // useEffect(() => {
+  // token && setFailure(false) || setFailure(false);
 
-// })
+  // })
 
   console.log(auth?.currentUser?.email);
   if (auth?.currentUser?.email === undefined) {
     setBanner("Logged Out")
-    
+
 
   } else { setBanner("Logged In") }
 
@@ -43,7 +44,7 @@ const [showLogin, setShowLogin] = useState(false);
   //  console.log(auth?.currentUser.email);   
   const signIn = async () => {
 
-   
+
     try {
       const cookie = await createUserWithEmailAndPassword(auth, email, password);
       //Token from firebase
@@ -52,7 +53,7 @@ const [showLogin, setShowLogin] = useState(false);
     } catch (err) {
       console.error(err);
       setFailure(true)
-      
+
     }
 
   };
@@ -61,11 +62,11 @@ const [showLogin, setShowLogin] = useState(false);
 
     setEmail(" ");
     setFailure(false)
-   
+
     try {
       const cookie = await signInWithEmailAndPassword(auth, email, password);
       setToken(cookie.user.accessToken)
-     
+
     } catch (err) {
       console.error(err);
       setFailure(true)
@@ -90,13 +91,13 @@ const [showLogin, setShowLogin] = useState(false);
 
 
   const logout = async () => {
-  
+
     try {
       await signOut(auth);
       setBanner("Logged Out")
     } catch (err) {
       console.error(err);
-      
+
     }
 
   };
@@ -128,17 +129,26 @@ const [showLogin, setShowLogin] = useState(false);
 
 
 
+
   return (
 
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xl">
         <CssBaseline />
-        <h1>Music Mob</h1>
+        <Typography variant="h1" color="white" style={{
+          backgroundColor: "black", // Background color
+          display: "inline-block",      // Keeps the background tight around text
+          padding: "4px 8px",
+          borderRadius: "12px",           // Optional padding
+        }}>MUSIC MOB</Typography>
+        <Typography variant="h5" color="grey" p={3}
         
+        >Find a Local Musician or Login to Create one</Typography>
+
         {failure && <div>Error with Login, Try Again</div>}
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -153,10 +163,10 @@ const [showLogin, setShowLogin] = useState(false);
           <Typography
             variant="h6"
           >
-               
-             {auth?.currentUser?.email === undefined ? <Typography  sx={{ p: 3, m:2,  bgcolor: 'red',color: "#FFFFFF",  border: 1  }}>YOU ARE NOT LOGGED IN</Typography>:
-            <Typography  sx={{ p: 3, m:2,  bgcolor: 'text.secondary',color: "#FFFFFF",  border: 3  }}>YOU ARE LOGGED IN</Typography>}
-           
+
+            {auth?.currentUser?.email === undefined ? <Typography sx={{ p: 3, m: 2, bgcolor: 'red', color: "#FFFFFF", border: 1 }}>YOU ARE NOT LOGGED IN</Typography> :
+              <Typography sx={{ p: 3, m: 2, bgcolor: 'text.secondary', color: "#FFFFFF", border: 3 }}>YOU ARE LOGGED IN</Typography>}
+
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -209,7 +219,7 @@ const [showLogin, setShowLogin] = useState(false);
 
 
             </Grid>
-           
+
             <Button
               // type="submit"
               fullWidth
@@ -222,16 +232,16 @@ const [showLogin, setShowLogin] = useState(false);
 
             {auth?.currentUser?.email === undefined &&
 
-            <Button
-              // type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() => { LogIn(); setEmail(' '); handleClear() }}
-            >
-              Log In
-            </Button>
-}
+              <Button
+                // type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => { LogIn(); setEmail(' '); handleClear() }}
+              >
+                Log In
+              </Button>
+            }
 
 
             <Button variant="contained"
@@ -242,21 +252,21 @@ const [showLogin, setShowLogin] = useState(false);
               Sign In with Google
             </Button>
 
- {auth?.currentUser?.email &&
-            <Button
-              // type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() => {logout(); setToken(null)}}
-              
-            >
-              Log Out
-            </Button>
+            {auth?.currentUser?.email &&
+              <Button
+                // type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => { logout(); setToken(null) }}
 
- }
+              >
+                Log Out
+              </Button>
 
-  
+            }
+
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 {/* <Link href="#" variant="body2">
@@ -275,9 +285,9 @@ const [showLogin, setShowLogin] = useState(false);
 
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <h1>Music Mob</h1>
-          </Grid>
+          </Grid> */}
           {/* <Grid item xs={6}>
                     <div>
                         <TextField id="outlined-basic" label="Email" variant="outlined" />

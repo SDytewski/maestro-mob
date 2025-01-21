@@ -165,63 +165,70 @@ function App() {
         <Button sx={{ m: 2 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
       </div>
       <div>
-      <Container maxWidth="lg">
-      <Box sx={{ flexGrow: 1 }} padding={2} >
-      <Grid container spacing={2} justify="center" >
-        {movieList.map((movie, i) => (
-          <Grid item sm={3}>
-          <Card variant="outlined" sx={{ minWidth: 275, maxWidth:600 }} >
-            <CardContent>
-              <div key={movie.id}>
+        <Container maxWidth="lg">
+          <Box sx={{ flexGrow: 1 }} padding={2} >
+            <Grid container spacing={2} justify="center" >
+              {movieList.map((movie, i) => (
+                <Grid item sm={3}>
+                  <Card variant="outlined" sx={{ minWidth: 275, maxWidth: 600 }} >
+                    <CardContent>
+                      <div key={movie.id}>
 
-                <h1 >
-                  {movie.name}
-                </h1>
-                <p>Location: {movie.location}</p>
-                <p>Level: {movie.level}</p>
-                <p>Instrument: {movie.instrument}</p>
-                {auth?.currentUser?.email &&
-                  <div style={{ width: "100%" }}>
-                    <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
+                        <h1 >
+                          {movie.name}
+                        </h1>
+                        <p>Location: {movie.location}</p>
+                        <p>Level: {movie.level}</p>
+                        <p>Instrument: {movie.instrument}</p>
+                        {auth?.currentUser?.email &&
+                          <div style={{ width: "100%" }}>
+                            <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
 
-                    <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(token) }} >Edit Musician</Button>
-                  </div>
+                            <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(token) }} >Edit Musician</Button>
+                          </div>
 
-                }
-                <div>
+                        }
+                        <div>
 
-                  {token && movie.id === isEditing ? (
-                    <div>
-                      <TextField
-                        name={`updateMovieTitle${movie.id}`}
-                        placeholder="new title..."
-                        reset="name"
-                        value={updatedTitle}
-                        onChange={(e) => setUpdatedTitle(e.target.value)}
-                      />
+                          {token && movie.id === isEditing ? (
+                            <div>
+                              <TextField
+                                name={`updateMovieTitle${movie.id}`}
+                                placeholder="new title..."
+                                reset="name"
+                                value={updatedTitle}
+                                onChange={(e) => setUpdatedTitle(e.target.value)}
+                              />
+                             <Box mt={2}>
+                             <Grid container spacing={1} justify='space-between'>
+                             <Grid item>
+                                < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+                                </Grid>
+                                <Grid item>
+                                < Button variant="outlined" onClick={() => { setIsEditing(false) }}>Cancel</Button>
+                                </Grid>
+                                </Grid>
+                            </Box>
+                            </div>
+                          )
+                            : (<div></div>)
+                          }
 
-                      < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
-                      < Button variant="outlined" onClick={() => { setIsEditing(false) }}>Cancel</Button>
-                    </div>
-                  )
-                    : (<div>Not Editing</div>)
-                  }
-
-                  {/* 
+                          {/* 
               {token &&
                 < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
               } */}
-                </div>
+                        </div>
 
-              </div>
-            </CardContent>
-          </Card>
-          </Grid>
-          
-        )
-        )}
-        </Grid>
-        </Box>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Grid>
+
+              )
+              )}
+            </Grid>
+          </Box>
         </Container>
 
       </div>
