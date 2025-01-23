@@ -139,7 +139,8 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           backgroundColor: "black", // Background color
           display: "inline-block",      // Keeps the background tight around text
           padding: "4px 8px",
-          borderRadius: "12px",           // Optional padding
+          borderRadius: "12px", 
+          margin: "20px"          // Optional padding
         }}>MUSIC MOB</Typography>
         <Typography variant="h5" color="grey" p={3}
         
