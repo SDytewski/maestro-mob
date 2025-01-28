@@ -190,7 +190,7 @@ function App() {
                         }
                         <div>
 
-                          {token && movie.id === isEditing ? (
+                          {auth?.currentUser?.email && movie.id === isEditing ? (
                             <div>
                               <TextField
                                 name={`updateMovieTitle${movie.id}`}

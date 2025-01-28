@@ -146,7 +146,13 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
         
         >Find a Local Musician or Login to Create one</Typography>
 
-        {failure && <div>Error with Login, Try Again</div>}
+        {failure && <div> <Typography variant="h5" color="white" style={{
+          backgroundColor: "red", // Background color
+          display: "inline-block",      // Keeps the background tight around text
+          padding: "4px 8px",
+          
+          margin: "10px"          // Optional padding
+        }}> Error with Login, Try Again!</Typography></div>}
         <Box
           sx={{
             marginTop: 4,
