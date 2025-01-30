@@ -81,11 +81,15 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
   const signInWithGoogle = async () => {
 
     try {
-      await signInWithPopup(auth, googleProvider);
+      const cookie = await signInWithPopup(auth, googleProvider);
+      setToken(cookie.user.accessToken);
+      console.log(token)
     } catch (err) {
       console.error(err);
       setFailure(true)
+      
     }
+  
 
   };
 
@@ -252,13 +256,15 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
 
             }
 
-            {/* <Button variant="contained"
+{auth?.currentUser?.email === undefined &&
+            <Button variant="contained"
               fullWidth
               sx={{ mt: 3, mb: 2 }}
               onClick={signInWithGoogle}
             >
               Sign In with Google
-            </Button> */}
+            </Button>
+}
 
             {auth?.currentUser?.email &&
               <Button
