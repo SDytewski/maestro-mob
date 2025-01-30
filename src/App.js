@@ -162,7 +162,9 @@ function App() {
 
 
         {/* <button onClick={onSubmitMovie}> Submit Musician</button> */}
-        <Button sx={{ m: 2 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
+        {auth?.currentUser?.email &&
+          <Button sx={{ m: 2 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button>
+        }
       </div>
       <div>
         <Container maxWidth="lg">
@@ -199,16 +201,16 @@ function App() {
                                 value={updatedTitle}
                                 onChange={(e) => setUpdatedTitle(e.target.value)}
                               />
-                             <Box mt={2}>
-                             <Grid container spacing={1} justify='space-between'>
-                             <Grid item>
-                                < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+                              <Box mt={2}>
+                                <Grid container spacing={1} justify='space-between'>
+                                  <Grid item>
+                                    < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+                                  </Grid>
+                                  <Grid item>
+                                    < Button variant="outlined" onClick={() => { setIsEditing(false) }}>Cancel</Button>
+                                  </Grid>
                                 </Grid>
-                                <Grid item>
-                                < Button variant="outlined" onClick={() => { setIsEditing(false) }}>Cancel</Button>
-                                </Grid>
-                                </Grid>
-                            </Box>
+                              </Box>
                             </div>
                           )
                             : (<div></div>)

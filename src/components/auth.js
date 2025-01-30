@@ -139,18 +139,18 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           backgroundColor: "black", // Background color
           display: "inline-block",      // Keeps the background tight around text
           padding: "4px 8px",
-          borderRadius: "12px", 
+          borderRadius: "12px",
           margin: "20px"          // Optional padding
         }}>MUSIC MOB</Typography>
         <Typography variant="h5" color="grey" p={3}
-        
+
         >Find a Local Musician or Login to Create one</Typography>
 
         {failure && <div> <Typography variant="h5" color="white" style={{
           backgroundColor: "red", // Background color
           display: "inline-block",      // Keeps the background tight around text
           padding: "4px 8px",
-          
+
           margin: "10px"          // Optional padding
         }}> Error with Login, Try Again!</Typography></div>}
         <Box
@@ -226,19 +226,20 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
 
 
             </Grid>
+            {auth?.currentUser?.email === undefined &&
+              <Button
+                // type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => { signIn(); setEmail(' '); handleClear() }}
+              >
+                Sign Up
+              </Button>
 
-            <Button
-              // type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() => { signIn(); setEmail(' '); handleClear() }}
-            >
-              Sign Up
-            </Button>
+            }
 
             {auth?.currentUser?.email === undefined &&
-
               <Button
                 // type="submit"
                 fullWidth
@@ -248,16 +249,16 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
               >
                 Log In
               </Button>
+
             }
 
-
-            <Button variant="contained"
+            {/* <Button variant="contained"
               fullWidth
               sx={{ mt: 3, mb: 2 }}
               onClick={signInWithGoogle}
             >
               Sign In with Google
-            </Button>
+            </Button> */}
 
             {auth?.currentUser?.email &&
               <Button
