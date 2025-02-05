@@ -141,12 +141,12 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
         <CssBaseline />
         <Typography variant="h1" color="white" style={{
           backgroundColor: "black", // Background color
-          display: "inline-block",      // Keeps the background tight around text
-          padding: "4px 8px",
-          borderRadius: "12px",
-          margin: "20px"          // Optional padding
+                // Optional padding
         }}>MUSIC MOB</Typography>
-        <Typography variant="h5" color="grey" p={3}
+        <Typography variant="h5" color="white" p={3} style={{
+          backgroundColor: "black", // Background color
+                  // Optional padding
+        }}
 
         >Find a Local Musician or Login to Create one</Typography>
 
