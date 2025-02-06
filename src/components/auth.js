@@ -3,6 +3,7 @@ import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { purple, red } from '@mui/material/colors';
+import MuiCard from '@mui/material/Card';
 
 import { useState } from "react";
 import * as React from 'react';
@@ -20,6 +21,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import ColorModeSelect from './theme/ColorModeSelect';
+import Stack from '@mui/material/Stack';
+
+
 
 
 export const Auth = ({ token, setToken, handleClear, setEmail, email, setPassword, password, setBanner, banner }) => {
@@ -32,6 +37,50 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
   // token && setFailure(false) || setFailure(false);
 
   // })
+
+  const Card = styled(MuiCard)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignSelf: 'center',
+    width: '100%',
+    padding: theme.spacing(4),
+    gap: theme.spacing(2),
+    margin: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '450px',
+    },
+    boxShadow:
+      'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
+    ...theme.applyStyles('dark', {
+      boxShadow:
+        'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
+    }),
+  }));
+
+  const SignInContainer = styled(Stack)(({ theme }) => ({
+    height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
+    minHeight: '100%',
+    padding: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(4),
+    },
+    '&::before': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      zIndex: -1,
+      inset: 0,
+      backgroundImage:
+        'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+      backgroundRepeat: 'no-repeat',
+      ...theme.applyStyles('dark', {
+        backgroundImage:
+          'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+      }),
+    },
+  }));
+
+
 
   console.log(auth?.currentUser?.email);
   if (auth?.currentUser?.email === undefined) {
@@ -139,8 +188,8 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xl">
         <CssBaseline />
-        <Typography variant="h1" color="white" style={{
-          backgroundColor: "black", // Background color
+        <Typography variant="h2" color="white" style={{
+          backgroundColor: "#c41E3A", // Background color
                 // Optional padding
         }}>MUSIC MOB</Typography>
         <Typography variant="h5" color="white" p={3} style={{
@@ -157,6 +206,9 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
 
           margin: "10px"          // Optional padding
         }}> Error with Login, Try Again!</Typography></div>}
+        <SignInContainer direction="column" justifyContent="space-between">
+        <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
+        <Card variant="outlined" mt={5}>
         <Box
           sx={{
             marginTop: 4,
@@ -290,6 +342,8 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
             </Grid>
           </Box>
         </Box>
+        </Card>
+        </SignInContainer>
         <Copyright sx={{ mt: 5 }} />
       </Container>
 
