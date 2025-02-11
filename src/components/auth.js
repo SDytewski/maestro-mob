@@ -166,6 +166,16 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
 
           margin: "10px"          // Optional padding
         }}> Error with Login, Try Again!</Typography></div>}
+        <Grid 
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ minHeight: '100vh' }}
+        
+        
+        >
 
         <Card sx={{ minWidth: 275, maxWidth: 500 }}>
           <CardContent>
@@ -307,6 +317,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           </CardContent>
         </Card>
 
+        </Grid>
         <Copyright sx={{ mt: 5 }} />
       </Container>
 
