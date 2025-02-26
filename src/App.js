@@ -196,7 +196,7 @@ function App() {
                             <div>
                               <TextField
                                 name={`updateMovieTitle${movie.id}`}
-                                placeholder="new title..."
+                                placeholder="new name..."
                                 reset="name"
                                 value={updatedTitle}
                                 onChange={(e) => setUpdatedTitle(e.target.value)}
