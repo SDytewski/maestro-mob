@@ -184,9 +184,9 @@ function App() {
                         <p>Instrument: {movie.instrument}</p>
                         {auth?.currentUser?.email &&
                           <div style={{ width: "100%" }}>
-                            <Button variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
+                            <Button sx={{ }}variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
 
-                            <Button sx={{ m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(token) }} >Edit Musician</Button>
+                            <Button sx={{ p: '6px 29px', m: 2 }} variant="contained" onClick={() => { setIsEditing(movie.id); console.log(token) }} >Edit Musician</Button>
                           </div>
 
                         }
