@@ -204,7 +204,7 @@ function App() {
                               <Box mt={2}>
                                 <Grid container spacing={1} justify='space-between'>
                                   <Grid item>
-                                    < Button variant="outlined" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
+                                    < Button variant="contained" onClick={() => { updateMovieTitle(movie.id); handleClear() }}>Update Name</Button>
                                   </Grid>
                                   <Grid item>
                                     < Button variant="outlined" onClick={() => { setIsEditing(false) }}>Cancel</Button>
