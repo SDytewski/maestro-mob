@@ -191,7 +191,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <Avatar sx={{ m: 1, bgcolor: 'black' }}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5" >
@@ -201,7 +201,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
                 variant="h6"
               >
 
-                {auth?.currentUser?.email === undefined ? <Typography sx={{ p: 3, m: 2, bgcolor: 'black', color: "#FFFFFF", border: 1 }}>YOU ARE NOT LOGGED IN</Typography> :
+                {auth?.currentUser?.email === undefined ? <Typography sx={{ p: 3, m: 2, bgcolor: 'red', color: "#FFFFFF", border: 1 }}>YOU ARE NOT LOGGED IN</Typography> :
                   <Typography sx={{ p: 3, m: 2, bgcolor: 'text.secondary', color: "#FFFFFF", border: 3 }}>YOU ARE LOGGED IN</Typography>}
 
               </Typography>
