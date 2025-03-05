@@ -116,18 +116,18 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
   };
 
 
-  function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        {/* <Link color="inherit" href="https://mui.com/">
-              Your Website
-            </Link>{' '} */}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+  // function Copyright(props) {
+  //   return (
+  //     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+  //       {'Copyright © '}
+  //       {/* <Link color="inherit" href="https://mui.com/">
+  //             Your Website
+  //           </Link>{' '} */}
+  //       {new Date().getFullYear()}
+  //       {'.'}
+  //     </Typography>
+  //   );
+  // }
 
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -150,10 +150,12 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
         <CssBaseline />
         <Typography variant="h2" color="white" style={{
           backgroundColor: "#c41E3A", // Background color
+          margin: "10px"
           // Optional padding
         }}>MUSIC MOB</Typography>
         <Typography variant="h5" color="white" p={3} style={{
           backgroundColor: "black", // Background color
+          margin: "10px"
           // Optional padding
         }}
 
@@ -164,7 +166,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           display: "inline-block",      // Keeps the background tight around text
           padding: "4px 8px",
 
-          margin: "10px"          // Optional padding
+             // Optional padding
         }}> Error with Login, Try Again!</Typography></div>}
         <Grid 
           container
@@ -172,7 +174,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{ minHeight: '100vh' }}
+     
         
         
         >
@@ -304,29 +306,29 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
 
                 }
 
-
+{/* 
                 <Grid container justifyContent="flex-end">
-                  <Grid item>
+                  <Grid item> */}
                     {/* <Link href="#" variant="body2">
                     Already have an account? Sign in
                   </Link> */}
-                  </Grid>
-                </Grid>
+                  {/* </Grid>
+                </Grid> */}
               </Box>
             </Box>
           </CardContent>
         </Card>
 
         </Grid>
-        <Copyright sx={{ mt: 5 }} />
+        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
 
 
 
 
 
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
+      {/* <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}> */}
           {/* <Grid item xs={12}>
             <h1>Music Mob</h1>
           </Grid> */}
@@ -373,8 +375,8 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
                 </Grid> */}
 
 
-        </Grid>
-      </Box>
+        {/* </Grid>
+      </Box> */}
     </ThemeProvider>
   );
 
