@@ -179,7 +179,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
         
         >
 
-        <Card sx={{ minWidth: 275, maxWidth: 500 }}>
+        <Card sx={{ minWidth: 275, maxWidth: 500, marginTop:3 }}>
           <CardContent>
 
             <Box
