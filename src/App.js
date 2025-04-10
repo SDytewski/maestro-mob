@@ -173,15 +173,15 @@ function App() {
               {movieList.map((movie, i) => (
                 <Grid item sm={3}>
                   <Card variant="outlined" sx={{ minWidth: 275, maxWidth: 600 }} >
-                    <CardContent>
+                    <CardContent >
                       <div key={movie.id}>
 
                         <h1 >
                           {movie.name}
                         </h1>
-                        <p>Location: {movie.location}</p>
-                        <p>Level: {movie.level}</p>
-                        <p>Instrument: {movie.instrument}</p>
+                        <div>Location: {movie.location}</div>
+                        <div>Level: {movie.level}</div>
+                        <div>Instrument: {movie.instrument}</div>
                         {auth?.currentUser?.email &&
                           <div style={{ width: "100%" }}>
                             <Button sx={{ }}variant="outlined" onClick={() => deleteMovie(movie.id)}>Delete Musician</Button>
