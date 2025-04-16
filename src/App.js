@@ -172,7 +172,7 @@ function App() {
             <Grid container spacing={2} justify="center" >
               {movieList.map((movie, i) => (
                 <Grid item sm={3}>
-                  <Card variant="outlined" sx={{ minWidth: 275, maxWidth: 600 }} >
+                  <Card variant="outlined" sx={{ minWidth: 275, maxWidth: 600, boxShadow: 5 }} >
                     <CardContent >
                       <div key={movie.id}>
 
