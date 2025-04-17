@@ -150,7 +150,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
         <CssBaseline />
         <Typography variant="h2" color="white" style={{
           backgroundColor: "#c41E3A", // Background color
-          margin: "10px"
+          margin: "10px",
           // Optional padding
         }}>MUSIC MOB</Typography>
         <Typography variant="h5" color="white" p={3} style={{
@@ -179,7 +179,7 @@ export const Auth = ({ token, setToken, handleClear, setEmail, email, setPasswor
         
         >
 
-        <Card sx={{ minWidth: 275, maxWidth: 500, marginTop:3 }}>
+        <Card sx={{ minWidth: 275, maxWidth: 500, marginTop:3, boxShadow:3 }}>
           <CardContent>
 
             <Box
