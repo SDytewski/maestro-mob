@@ -163,8 +163,8 @@ function App() {
 
         {/* <button onClick={onSubmitMovie}> Submit Musician</button> */}
         {auth?.currentUser?.email ?
-          <Button sx={{ m: 2 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button> :
-          <Button disabled sx={{ m: 2 }} variant="contained">Submit Musician</Button> }
+          <Button sx={{ m: 2, minHeight: 51 }} variant="contained" onClick={onSubmitMovie}>Submit Musician</Button> :
+          <Button disabled sx={{ m: 2, minHeight: 51 }} variant="contained">Submit Musician</Button> }
       </div>
       <div>
         <Container maxWidth="lg">
